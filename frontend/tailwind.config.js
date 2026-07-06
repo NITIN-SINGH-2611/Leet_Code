@@ -5,6 +5,10 @@ export default {
   theme: {
     extend: {
       colors: {
+        slate: {
+          400: "var(--slate-400)",
+          500: "var(--slate-500)",
+        },
         brand: {
           50: "#eef4ff",
           100: "#d9e6ff",

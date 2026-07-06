@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --slate-400: #334155; /* Darker Slate for high contrast secondary text */
+  --slate-500: #1e293b; /* Darker Slate for metadata */
+}
+
+html.dark {
+  --slate-400: #94a3b8; /* Original Slate-400 for dark mode */
+  --slate-500: #64748b; /* Original Slate-500 for dark mode */
+}
+
 @layer base {
   html {
     @apply antialiased scroll-smooth;
@@ -17,6 +27,26 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
     @apply tracking-tight;
+  }
+
+  /* Enhance text size and readability in Light Mode to prevent eye strain */
+  html:not(.dark) .text-sm {
+    font-size: 0.95rem !important;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  html:not(.dark) .text-xs {
+    font-size: 0.85rem !important;
+    font-weight: 600;
+  }
+
+  html:not(.dark) .text-slate-400 {
+    color: var(--slate-400) !important;
+  }
+
+  html:not(.dark) .text-slate-500 {
+    color: var(--slate-500) !important;
   }
 }
 
