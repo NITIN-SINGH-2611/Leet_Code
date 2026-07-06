@@ -63,7 +63,7 @@ export default function QuestionDetailPage() {
 
   return (
     <div className="max-w-3xl space-y-5">
-      <Link to="/questions" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-100">
+      <Link to="/questions" className="inline-flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 font-semibold">
         <ArrowLeft className="w-4 h-4" /> Back to questions
       </Link>
 
@@ -82,8 +82,11 @@ export default function QuestionDetailPage() {
       </div>
 
       <Card>
-        <h2 className="font-semibold mb-2">Problem</h2>
-        <p className="text-sm text-slate-300 leading-relaxed">{q.problemStatement}</p>
+        <h2 className="font-bold text-lg mb-3">Problem</h2>
+        <p 
+          className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium"
+          dangerouslySetInnerHTML={{ __html: q.problemStatement || "" }}
+        />
       </Card>
 
       <div className="grid grid-cols-2 gap-4">
@@ -105,7 +108,12 @@ export default function QuestionDetailPage() {
           <Lightbulb className="w-4 h-4 text-amber-400" />
           {showHints ? "Hide hint" : "Reveal hint"}
         </button>
-        {showHints && <p className="text-sm text-slate-300 mt-3 leading-relaxed">{q.hints}</p>}
+        {showHints && (
+          <p 
+            className="text-sm text-slate-700 dark:text-slate-300 mt-3 leading-relaxed font-medium"
+            dangerouslySetInnerHTML={{ __html: q.hints || "" }}
+          />
+        )}
       </Card>
 
       <Card>
@@ -116,7 +124,12 @@ export default function QuestionDetailPage() {
           <BookOpen className="w-4 h-4 text-brand-300" />
           {showEditorial ? "Hide editorial" : "Reveal editorial"}
         </button>
-        {showEditorial && <p className="text-sm text-slate-300 mt-3 leading-relaxed">{q.editorial}</p>}
+        {showEditorial && (
+          <p 
+            className="text-sm text-slate-700 dark:text-slate-300 mt-3 leading-relaxed font-medium"
+            dangerouslySetInnerHTML={{ __html: q.editorial || "" }}
+          />
+        )}
       </Card>
 
       <div className="flex gap-3 items-center">
