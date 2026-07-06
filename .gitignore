@@ -31,5 +31,6 @@ logs
 
 # Spring Boot
 backend/target/
+backend/data/
 *.jar
 *.war
