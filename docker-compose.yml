@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: codecrack-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: codecrackdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - codecrack_pg_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: codecrack-backend
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:postgresql://postgres:5432/codecrackdb
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      JWT_SECRET: ${JWT_SECRET:-change-this-secret}
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ./frontend
+    container_name: codecrack-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+volumes:
+  codecrack_pg_data:

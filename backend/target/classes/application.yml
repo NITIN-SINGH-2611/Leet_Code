@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: codecrack-ai-backend
+  profiles:
+    active: dev
+
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+app:
+  cors:
+    allowed-origins: http://localhost:5173
+  jwt:
+    secret: ${JWT_SECRET:change-this-secret-in-env-file-min-256-bits-long}
+    access-token-expiry-ms: 900000        # 15 minutes
+    refresh-token-expiry-ms: 604800000    # 7 days
+
+logging:
+  level:
+    root: INFO
+    com.codecrackai: DEBUG
