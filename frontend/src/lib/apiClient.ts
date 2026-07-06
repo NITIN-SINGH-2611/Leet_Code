@@ -1,7 +1,11 @@
 import axios from "axios";
 
+const baseApiUrl = import.meta.env.PROD 
+  ? "http://localhost:8080/api/v1" 
+  : "/api/v1";
+
 export const apiClient = axios.create({
-  baseURL: "/api/v1",
+  baseURL: baseApiUrl,
   headers: {
     "Content-Type": "application/json",
   },
@@ -25,7 +29,7 @@ async function refreshAccessToken(): Promise<string | null> {
   if (!refreshToken) return null;
 
   try {
-    const { data } = await axios.post("/api/v1/auth/refresh", { refreshToken });
+    const { data } = await axios.post(`${baseApiUrl}/auth/refresh`, { refreshToken });
     const newAccessToken = data.data.accessToken as string;
     localStorage.setItem("cc_access_token", newAccessToken);
     localStorage.setItem("cc_refresh_token", data.data.refreshToken);
