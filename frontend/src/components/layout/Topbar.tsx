@@ -19,9 +19,9 @@ export function Topbar() {
   const initial = user?.fullName?.charAt(0)?.toUpperCase() ?? "?";
 
   return (
-    <header className="h-16 shrink-0 border-b border-white/10 flex items-center gap-4 px-5 bg-slate-950/60 backdrop-blur-md">
+    <header className="h-16 shrink-0 border-b border-slate-200 dark:border-white/10 flex items-center gap-4 px-5 bg-white/60 dark:bg-slate-950/60 backdrop-blur-md transition-colors duration-200">
       <div className="relative flex-1 max-w-md">
-        <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+        <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
         <Input placeholder="Search questions, topics, companies..." className="pl-9" />
       </div>
 
@@ -30,7 +30,7 @@ export function Topbar() {
       <button
         onClick={toggleTheme}
         aria-label="Toggle theme"
-        className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-100 hover:bg-white/5 transition-colors"
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
       >
         {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
       </button>
